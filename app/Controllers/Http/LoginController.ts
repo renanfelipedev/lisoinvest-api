@@ -8,7 +8,13 @@ export default class LoginController {
     try {
       const { token } = await auth.use('api').attempt(email, password)
 
-      const { id, name, active } = await User.findByOrFail('email', email)
+      const user = await User.findByOrFail('email', email)
+
+      const { id, name, active } = user
+
+      if (!user) {
+        throw new Error('Email or password ')
+      }
 
       if (!active) {
         throw new Error('User deactived by administrator.')
@@ -22,6 +28,7 @@ export default class LoginController {
         token,
       }
     } catch (error) {
+      console.log({ error: error.message })
       return response.status(400).json({ error: error.message })
     }
   }

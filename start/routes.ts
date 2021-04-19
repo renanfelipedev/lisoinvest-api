@@ -27,6 +27,7 @@ Route.post('/logout', 'LoginController.destroy').as('logout')
 
 Route.group(() => {
   Route.resource('/users', 'UsersController').apiOnly()
+  Route.put('/users/:user_id/activation', 'UsersController.toogleActivation').as('users.activation')
   Route.resource('/wallets', 'WalletsController').apiOnly()
   Route.resource('/stocks', 'StocksController').apiOnly()
   Route.resource('/stocks/:stock/prices', 'StockPricesController').apiOnly()

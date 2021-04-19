@@ -33,4 +33,19 @@ export default class UsersController {
 
     return response.status(204)
   }
+
+  public async toogleActivation({ params }: HttpContextContract) {
+    const user = await User.findOrFail(params.user_id)
+
+    user.merge({
+      active: !user.active,
+    })
+
+    await user.save()
+
+    return {
+      name: user.name,
+      active: user.active,
+    }
+  }
 }

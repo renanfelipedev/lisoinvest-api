@@ -10,12 +10,6 @@ export default class UserSeederSeeder extends BaseSeeder {
         password: 't',
         active: true,
       },
-      {
-        email: 'renan.fb.dantas@gmail.com',
-        name: 'Renan Felipe Brito Dantas',
-        password: 't',
-        active: true,
-      },
     ])
   }
 }
